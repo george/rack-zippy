@@ -240,6 +240,11 @@ class Rack::Zippy::AssetServerTest < Test::Unit::TestCase
            "Should handle flash .swf files"
   end
 
+  def test_has_static_extension_returns_true_for_source_maps
+    assert app.send(:has_static_extension?, '/application.js.map'),
+           "Should handle source map (.map) files"
+  end
+
   def test_passes_non_asset_requests_onto_app
     get '/about'
     assert_underlying_app_responded
